@@ -1,17 +1,16 @@
-import { Link, useNavigate } from "react-router"
-import { useState } from "react"
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
 const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log('form submitted', email, password)
-    // navigate to about with react
-    navigate('/about');
-    // navigate('/about', {state: {email, password}});
+
   }
   return (<>
     <form 
@@ -39,25 +38,38 @@ const LoginForm = () => {
         Login
       </button>
     </form>
-     <p>
-        Goto <Link to={`/contact/${email}`} className="text-blue-500"> Contact </Link>
-      </p>
   </>)
 }
 
-export const Home = () => {
+function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <div>
-      <h1>Home</h1>
-      <p>
-        Goto <Link to="/about" className="text-blue-500">About</Link>
-        {/* Goto <Link to="/about" state={{email: "test@test.com"}} className="text-blue-500">About</Link> */}
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
       </p>
-      <LoginForm />
-      <>
-        <h3>Projects</h3>
-        <Link to="/projects?skill=react&language=javascript" className="text-blue-500">React</Link>
-      </>
-    </div>
+
+      {/* <LoginForm /> */}
+    </>
   )
 }
+
+export default App
